@@ -1,0 +1,5 @@
+name: BuildAThing
+version: '${project.version}'
+main: buildathing.buildathing.Buildathing
+api-version: 1.19
+authors: [ morozoffnor ]
