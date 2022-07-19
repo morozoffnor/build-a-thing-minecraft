@@ -35,12 +35,3 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B package --file SkyblockStats/pom.xml
-
-      - name: Telegram notification
-        if: cancelled() == false
-        uses: xinthink/action-telegram@v1.1
-        with:
-          botToken: ${{ secrets.BotToken }}
-          chatId: ${{ secrets.ChatID }}
-          jobStatus: ${{ job.status }}
-          skipSuccess: 'false'
