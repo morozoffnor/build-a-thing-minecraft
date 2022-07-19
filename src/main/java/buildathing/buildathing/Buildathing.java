@@ -27,17 +27,17 @@ public final class Buildathing extends JavaPlugin {
         // Plugin shutdown logic
     }
 
-    List<Location> protectedBlocks;
-
-    public static class ProtectedBlocks {
-
-        public List<Location> getProtectedBlocks() {
-            return protectedBlocks;
-        }
-
-        public void addProtectedBlock(Location loc) {
-            protectedBlocks.add(loc);
-        }
-    }
+//    List<Location> protectedBlocks;
+//
+//    public static class ProtectedBlocks {
+//
+//        public List<Location> getProtectedBlocks() {
+//            return protectedBlocks;
+//        }
+//
+//        public void addProtectedBlock(Location loc) {
+//            protectedBlocks.add(loc);
+//        }
+//    }
 
 }
