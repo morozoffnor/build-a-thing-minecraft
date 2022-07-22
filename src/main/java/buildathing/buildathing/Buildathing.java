@@ -14,6 +14,7 @@ public final class Buildathing extends JavaPlugin {
     public void onEnable() {
         getLogger().log(Level.INFO, "Build-a-thing is on!");
 
+        saveDefaultConfig();
         // register commands
         this.getCommand("starta").setExecutor(new Start());
         getServer().getStructureManager().createStructure();
@@ -21,8 +22,6 @@ public final class Buildathing extends JavaPlugin {
         // register listeners
         getServer().getPluginManager().registerEvents(new ProtectionListener(), this);
 
-        // initiate ProtectedBlocksContainer
-        ProtectedBlocksContainer.getInstance().protectedBlocks.isEmpty();
     }
 
     @Override
