@@ -32,12 +32,12 @@ public final class Buildathing extends JavaPlugin {
     public void onDisable() {
         // end the game
         GameManager.getInstance().gameStatus = GameStatus.FINISHED;
-        // clear containers
-        StructureBlocksContainer.getInstance().structureBlocks.clear();
-        ProtectedBlocksContainer.getInstance().protectedBlocks.clear();
         // replace all protected blocks with air
         Cleaner cleaner = new Cleaner();
         cleaner.cleanUpBlocks(ProtectedBlocksContainer.getInstance().protectedBlocks);
+        // clear containers
+        StructureBlocksContainer.getInstance().structureBlocks.clear();
+        ProtectedBlocksContainer.getInstance().protectedBlocks.clear();
     }
 
 }
