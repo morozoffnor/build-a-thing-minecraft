@@ -1,0 +1,11 @@
+blocks:
+  0:
+    material: BEDROCK
+    x: -2
+    y: -2
+    z: 1
+  1:
+    material: BEDROCK
+    x: -3
+    y: -2
+    z: 1

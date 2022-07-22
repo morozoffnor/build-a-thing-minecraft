@@ -2,9 +2,14 @@ package buildathing.buildathing.bulding;
 
 import buildathing.buildathing.containers.ProtectedBlocksContainer;
 import buildathing.buildathing.managers.GameManager;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+
+import java.util.List;
 
 public class BlockBuilder {
     public void createPlatform(Location location, int radius) {
@@ -18,5 +23,13 @@ public class BlockBuilder {
                 ProtectedBlocksContainer.getInstance().protectedBlocks.add(block.getLocation());
             }
         }
+    }
+
+    public void createStructure(FileConfiguration structureFile) {
+        ConfigurationSection blocks = structureFile.getConfigurationSection("blocks");
+        if (blocks == null) {
+            Bukkit.getLogger().severe("Could't find structures");
+        }
+        Bukkit.getLogger().info("structure loaded");
     }
 }

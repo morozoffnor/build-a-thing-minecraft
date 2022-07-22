@@ -4,6 +4,7 @@ import buildathing.buildathing.bulding.BlockBuilder;
 import buildathing.buildathing.containers.ProtectedBlocksContainer;
 import buildathing.buildathing.managers.GameManager;
 import buildathing.buildathing.misc.GameStatus;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -30,6 +31,7 @@ public class Start implements CommandExecutor {
 
         player.sendMessage("the platform has spawned");
         GameManager.getInstance().gameStatus = GameStatus.RUNNING;
+
         return true;
     }
 }
