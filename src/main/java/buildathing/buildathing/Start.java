@@ -26,7 +26,7 @@ public class Start implements CommandExecutor {
         ProtectedBlocksContainer.getInstance().protectedBlocks.add(loc);
 
         BlockBuilder builder = new BlockBuilder();
-        builder.buildABlock(player.getLocation().add(0,30,0));
+        builder.createPlatform(player.getLocation().add(0,30,0), 10);
 
         player.sendMessage("the platform has spawned");
         GameManager.getInstance().gameStatus = GameStatus.RUNNING;
