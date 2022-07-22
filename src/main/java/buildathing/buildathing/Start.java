@@ -1,6 +1,9 @@
 package buildathing.buildathing;
 
+import buildathing.buildathing.bulding.BlockBuilder;
 import buildathing.buildathing.containers.ProtectedBlocksContainer;
+import buildathing.buildathing.managers.GameManager;
+import buildathing.buildathing.misc.GameStatus;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -14,16 +17,19 @@ import java.util.List;
 public class Start implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        // command is player-only
+        if (!(sender instanceof Player)) return false;
         Player player = (Player) sender;
-//        Buildathing.ProtectedBlocks pb = new Buildathing.ProtectedBlocks();
-        if (sender instanceof Player) {
-            Location loc = player.getLocation().add(10.0,0.0,10.0);
-            loc.getBlock().setType(Material.BEDROCK);
-//            pb.addProtectedBlock(loc);
-            ProtectedBlocksContainer.getInstance().protectedBlocks.add(loc);
+        Location loc = player.getLocation().add(10.0, 0.0, 10.0);
+        GameManager.getInstance().gameStatus = GameStatus.STARTING;
+        loc.getBlock().setType(Material.BEDROCK);
+        ProtectedBlocksContainer.getInstance().protectedBlocks.add(loc);
 
-        }
-        player.sendMessage(String.valueOf(ProtectedBlocksContainer.getInstance().protectedBlocks.size()));
+        BlockBuilder builder = new BlockBuilder();
+        builder.createPlatform(player.getLocation().add(0,30,0), 10);
+
+        player.sendMessage("the platform has spawned");
+        GameManager.getInstance().gameStatus = GameStatus.RUNNING;
         return true;
     }
 }

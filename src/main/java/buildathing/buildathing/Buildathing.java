@@ -1,5 +1,6 @@
 package buildathing.buildathing;
 
+import buildathing.buildathing.containers.ProtectedBlocksContainer;
 import buildathing.buildathing.listeners.ProtectionListener;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -11,8 +12,9 @@ public final class Buildathing extends JavaPlugin {
 
     @Override
     public void onEnable() {
-       getLogger().log(Level.INFO, "Build-a-thing is on!");
+        getLogger().log(Level.INFO, "Build-a-thing is on!");
 
+        saveDefaultConfig();
         // register commands
         this.getCommand("starta").setExecutor(new Start());
         getServer().getStructureManager().createStructure();
