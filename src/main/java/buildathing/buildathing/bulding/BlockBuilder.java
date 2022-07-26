@@ -9,6 +9,7 @@ import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BlockBuilder {
@@ -25,11 +26,29 @@ public class BlockBuilder {
         }
     }
 
-    public void createStructure(FileConfiguration structureFile) {
+    public void createStructure(FileConfiguration structureFile, Location baseCord) {
         ConfigurationSection blocks = structureFile.getConfigurationSection("blocks");
         if (blocks == null) {
-            Bukkit.getLogger().severe("Could't find structures");
+            Bukkit.getLogger().severe("Couldn't find structures");
         }
+        List<Location> structureBlocks = new ArrayList<>();
+        for (String key : blocks.getKeys(false)) {
+            ConfigurationSection block = blocks.getConfigurationSection(key);
+            Location structureBlock = baseCord;
+            structureBlock.add(block.getDouble("x"),block.getDouble("y"),block.getDouble("z"));
+            try {
+                structureBlock.getBlock().setType(Material.valueOf(block.getString("material")));
+                Bukkit.getLogger().info("added block");
+            } catch (Exception e) {
+                structureBlock.getBlock().setType(Material.AIR);
+            }
+            structureBlocks.add(structureBlock.getBlock().getLocation());
+            Bukkit.getLogger().info("protected block");
+        }
+
+        ProtectedBlocksContainer.getInstance().protectedBlocks.addAll(structureBlocks);
+        Bukkit.getLogger().info("protected blocks");
+
         Bukkit.getLogger().info("structure loaded");
     }
 }

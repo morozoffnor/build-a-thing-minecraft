@@ -3,6 +3,7 @@ package buildathing.buildathing;
 import buildathing.buildathing.bulding.BlockBuilder;
 import buildathing.buildathing.containers.ProtectedBlocksContainer;
 import buildathing.buildathing.managers.GameManager;
+import buildathing.buildathing.managers.StructuresLoadingManager;
 import buildathing.buildathing.misc.GameStatus;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -10,6 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -27,7 +29,10 @@ public class Start implements CommandExecutor {
         ProtectedBlocksContainer.getInstance().protectedBlocks.add(loc);
 
         BlockBuilder builder = new BlockBuilder();
-        builder.createPlatform(player.getLocation().add(0,30,0), 10);
+        builder.createPlatform(player.getLocation().add(0,10,0), 4);
+        StructuresLoadingManager loader = new StructuresLoadingManager();
+
+        builder.createStructure(loader.getStructure("test.yml"),player.getLocation().add(-4,11,-4));
 
         player.sendMessage("the platform has spawned");
         GameManager.getInstance().gameStatus = GameStatus.RUNNING;
