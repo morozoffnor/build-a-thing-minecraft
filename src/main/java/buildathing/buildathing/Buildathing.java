@@ -1,7 +1,11 @@
 package buildathing.buildathing;
 
+import buildathing.buildathing.bulding.Cleaner;
 import buildathing.buildathing.containers.ProtectedBlocksContainer;
+import buildathing.buildathing.containers.StructureBlocksContainer;
 import buildathing.buildathing.listeners.ProtectionListener;
+import buildathing.buildathing.managers.GameManager;
+import buildathing.buildathing.misc.GameStatus;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,20 +30,15 @@ public final class Buildathing extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        // end the game
+        GameManager.getInstance().gameStatus = GameStatus.FINISHED;
+        // replace all protected blocks with air
+        Cleaner cleaner = new Cleaner();
+        cleaner.cleanUpBlocks(ProtectedBlocksContainer.getInstance().protectedBlocks);
+        // clear containers
+        StructureBlocksContainer.getInstance().structureBlocks.clear();
+        ProtectedBlocksContainer.getInstance().protectedBlocks.clear();
     }
 
-//    List<Location> protectedBlocks;
-//
-//    public static class ProtectedBlocks {
-//
-//        public List<Location> getProtectedBlocks() {
-//            return protectedBlocks;
-//        }
-//
-//        public void addProtectedBlock(Location loc) {
-//            protectedBlocks.add(loc);
-//        }
-//    }
 
 }
