@@ -9,7 +9,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.List;
 
