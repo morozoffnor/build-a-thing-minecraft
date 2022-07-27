@@ -21,4 +21,8 @@ public class StructuresLoadingManager {
         }
         return structure;
     }
+
+    // TODO downloadStructures method
+    // TODO unzipStructures method
+    // TODO check structure zip archive hash
 }

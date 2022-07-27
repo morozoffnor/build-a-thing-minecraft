@@ -6,7 +6,6 @@ import buildathing.buildathing.containers.StructureBlocksContainer;
 import buildathing.buildathing.listeners.ProtectionListener;
 import buildathing.buildathing.managers.GameManager;
 import buildathing.buildathing.misc.GameStatus;
-import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
