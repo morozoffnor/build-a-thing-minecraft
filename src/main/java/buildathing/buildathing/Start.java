@@ -22,16 +22,15 @@ public class Start implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         // command is player-only
         if (!(sender instanceof Player)) return false;
+        Buildathing plugin = buildathing.buildathing.Buildathing.getPlugin(Buildathing.class);
         Player player = (Player) sender;
-        Location loc = player.getLocation().add(10.0, 0.0, 10.0);
+
         GameManager.getInstance().gameStatus = GameStatus.STARTING;
-        loc.getBlock().setType(Material.BEDROCK);
-        ProtectedBlocksContainer.getInstance().protectedBlocks.add(loc);
 
         BlockBuilder builder = new BlockBuilder();
-        builder.createPlatform(player.getLocation().add(0,10,0), 4);
         StructuresLoadingManager loader = new StructuresLoadingManager();
 
+        builder.createPlatform(player.getLocation().add(0,10,0), plugin.getConfig().getInt("PLOT_RADIUS"));
         builder.createStructure(loader.getStructure("test.yml"),player.getLocation().add(-4,11,-4));
 
         player.sendMessage("the platform has spawned");
