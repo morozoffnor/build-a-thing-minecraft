@@ -5,9 +5,11 @@ import buildathing.buildathing.containers.ProtectedBlocksContainer;
 import buildathing.buildathing.containers.StructureBlocksContainer;
 import buildathing.buildathing.listeners.ProtectionListener;
 import buildathing.buildathing.managers.GameManager;
+import buildathing.buildathing.managers.StructuresLoadingManager;
 import buildathing.buildathing.misc.GameStatus;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.net.URL;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -18,6 +20,9 @@ public final class Buildathing extends JavaPlugin {
         getLogger().log(Level.INFO, "Build-a-thing is on!");
 
         saveDefaultConfig();
+        StructuresLoadingManager structuresLoadingManager = new StructuresLoadingManager();
+
+        structuresLoadingManager.downloadStructuresArchive(getConfig().getString("STRUCTURES_ARCHIVE_URL"));
         // register commands
         this.getCommand("starta").setExecutor(new Start());
         getServer().getStructureManager().createStructure();
