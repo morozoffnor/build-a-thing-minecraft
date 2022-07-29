@@ -49,8 +49,9 @@ public class BlockBuilder {
             }
             structureBlocks.add(structureBlock.getBlock().getLocation());
             structureBlock = baseCord.add(-block.getDouble("x"),-block.getDouble("y"),-block.getDouble("z"));;
-
         }
+
+
         // protect blocks
         ProtectedBlocksContainer.getInstance().protectedBlocks.addAll(structureBlocks);
     }
